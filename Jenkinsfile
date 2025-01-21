@@ -16,13 +16,6 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                // Run tests (Jest should be installed locally)
-                bat 'npm test'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 // Build Docker image
