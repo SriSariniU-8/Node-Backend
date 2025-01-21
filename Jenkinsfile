@@ -11,7 +11,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                // Install Node.js dependencies (including Jest)
+                // Install Node.js dependencies
                 bat 'npm install'
             }
         }
