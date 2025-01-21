@@ -11,27 +11,23 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                // Clear npm cache before installing
-                sh 'npm cache clean --force'
-
-                // Install npm dependencies with verbose logging
-                sh 'npm install --verbose'
+                // Install Node.js dependencies using npm on Windows
+                bat 'npm install'
             }
         }
 
         stage('Run Tests') {
             steps {
-                // Run tests
-                sh 'npm test'
+                // Run tests using npm on Windows
+                bat 'npm test'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                // Build Docker image
-                sh 'docker build -t node_project:latest .'
+                // Build Docker image using Windows-compatible command
+                bat 'docker build -t node_project:latest .'
             }
         }
-
     }
 }
