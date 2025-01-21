@@ -1,0 +1,52 @@
+# version: '3.8'
+
+# services:
+#   app:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     ports:
+#       - "4000:4000" 
+#     volumes:
+#       - .:/usr/src/app 
+#       - /usr/src/app/node_modules 
+#     environment:
+#       NODE_ENV: development
+
+
+
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000" 
+    volumes:
+      - .:/usr/src/app 
+      - /usr/src/app/node_modules 
+    environment:
+      NODE_ENV: development
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: my_database
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15              # Use the official PostgreSQL image
+    environment:
+      POSTGRES_USER: postgres       # Set the PostgreSQL username
+      POSTGRES_PASSWORD: postgres   # Set the PostgreSQL password
+      POSTGRES_DB: my_database      # Set the PostgreSQL database name
+    ports:
+      - "5432:5432"                 # Expose the database on port 5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres_data:                    # Define a named volume for PostgreSQL data
