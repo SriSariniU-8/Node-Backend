@@ -11,21 +11,21 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                // Install Node.js dependencies using npm on Windows
+                // Install Node.js dependencies (including Jest)
                 bat 'npm install'
             }
         }
 
         stage('Run Tests') {
             steps {
-                // Run tests using npm on Windows
+                // Run tests (Jest should be installed locally)
                 bat 'npm test'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                // Build Docker image using Windows-compatible command
+                // Build Docker image
                 bat 'docker build -t node_project:latest .'
             }
         }
