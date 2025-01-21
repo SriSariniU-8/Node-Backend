@@ -11,8 +11,11 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                // Install Node.js dependencies
-                sh "sudo apt install npm"
+                // Clear npm cache before installing
+                sh 'npm cache clean --force'
+
+                // Install npm dependencies with verbose logging
+                sh 'npm install --verbose'
             }
         }
 
