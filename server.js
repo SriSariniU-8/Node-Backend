@@ -44,4 +44,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(userRoutes); 
 
-app.listen(4000, () => console.log('Example app is listening on port 40000.'));
+app.listen(3000, () => console.log('Example app is listening on port 4000.'));
